@@ -42,10 +42,18 @@ function compareTeam(team_A, team_B) {
 function compareTeamwithCondition(team_A, team_B) {
     var teamA = averageTeam(team_A);
     var teamB = averageTeam(team_B);
-    if (teamA > teamB && teamA >= 100) {
-        return 'Team ' + team_A.name + ' wins with an average score of ' + teamA.toFixed(2);
-    } else if (teamB > teamA && teamB >= 100) {
-        return 'Team ' + team_B.name + ' wins with an average score of ' + teamB.toFixed(2);
+    if (teamA > teamB) {
+        if (teamA >= 100) {
+            return 'Team ' + team_A.name + ' wins with an average score of ' + teamA.toFixed(2);
+        } else {
+            return 'Unknown'
+        }
+    } else if (teamB > teamA) {
+        if (teamB >= 100) {
+            return 'Team ' + team_B.name + ' wins with an average score of ' + teamB.toFixed(2)
+        } else {
+            return 'Unknown'
+        }
     } else {
         return 'It\'s a draw! Both teams have an average score of ' + teamA.toFixed(2);
     }
@@ -65,6 +73,15 @@ function compareTeamwithCondition2(team_A, team_B) {
     }
 }
 
+function tip(value) {
+    return ((value >= 50 && value <= 300) ? 0.15 : 0.2) * value;
+}
+
+function tiptoString(value) {
+    total = value + tip(value);
+    return 'The bill was ' + value + ', the tip was ' + tip(value) + ', and the total value ' + total.toFixed(2)
+}
+
 //Đối tượng
 const [user1, user2, user3, user4] = [
     { name: 'Marks', mass: 78, height: 1.69 },
@@ -80,9 +97,12 @@ const [team1, team2, team3, team4] = [
     { name: 'Koalas', score1: 109, score2: 95, score3: 106 }
 ]
 
+const bill_values = [275, 40, 430]
+
 console.log("Kết quả câu 1: \n" + markHigherBMI(user1, user2) + ", " + markHigherBMI(user3, user4) +
     "\n\nKết quả câu 2.1: \n" + markHigherBMItoString(user1, user2) + "\n" + markHigherBMItoString(user3, user4) +
     "\n\nKết quả câu 2.2: \n" + markHigherBMItoStringwithBMI(user1, user2) + "\n" + markHigherBMItoStringwithBMI(user3, user4) +
     "\n\nKết quả câu 3.2: \n" + compareTeam(team1, team2) + '\n' + compareTeam(team3, team4) +
     "\n\nKết quả câu 3.3: \n" + compareTeamwithCondition(team1, team2) + '\n' + compareTeamwithCondition(team3, team4) +
-    "\n\nKết quả câu 3.3: \n" + compareTeamwithCondition2(team1, team2) + '\n' + compareTeamwithCondition2(team3, team4))
+    "\n\nKết quả câu 3.3: \n" + compareTeamwithCondition2(team1, team2) + '\n' + compareTeamwithCondition2(team3, team4) +
+    "\n\nKết quả câu 4: \n" + tiptoString(bill_values[0]) + '\n' + tiptoString(bill_values[1]) + '\n' + tiptoString(bill_values[2]))
